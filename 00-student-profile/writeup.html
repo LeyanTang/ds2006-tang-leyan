@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <title>Leyan Tang</title>
+    <style>
+        body {
+            background-color: #ffe6e6; 
+        }
+        .blog-container {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            background-color: white;
+            padding: 20px; 
+        }
+        .image {
+            max-width: 50%;
+            padding: 20px;
+        }
+        .image img {
+            max-width: 90%; 
+            height: auto;
+        }
+        .intro {
+            flex: 1;
+            padding: 20px;
+        }
+        .intro h2 {
+            font-weight: bold; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Leyan Tang</h1>
+    </header>
+    <div class="blog-container">
+        <div class="image">
+            <img src="https://avatars.githubusercontent.com/u/133057656?v=4" alt="Personal Image">
+        </div>
+        <div class="intro">
+            <h2>Introduction</h2>
+            <p>Hey there, I'm Leyan Tang, a fourth-year student who trasferred to UVA during the second-year at school. I use she/her pronouns. I'm interested in pursuing a PhD degree upon my graduation, which is rare for Commerce students, but I'm enthusiastic about applying large-scale AI/ML techniques to the world of business. Welcome to my little corner of the Internet!</p>
+            <h2>Major & Concentrations</h2>
+            <p>Commerce Major with Finance and IT concentrations (Business Analytics track)</p>
+            <h2>Hometown</h2>
+            <p>I originate from Yangzhou, China, a true gem nestled in the embrace of Jiangsu Province. This picturesque city is a harmonious blend of natural beauty and historical richness. </p>
+            <h2>Hobbies</h2>
+            <p>I like singing (used to be a vocalist in a school band), swimming, hiking, pop jazz dancing (got my top-level certificate for amateur dancers in China) and cooking. </p>
+        </div>
+    </div>
+    <div class="blog-container">
+        <div class="intro" style="order: 1;">
+            <h2>My Cat</h2>
+            <p>Introducing Yuan Yuan! He's a three-year old British Short Hair gentleman.🐾💙 He's now well-kept by my family in China. He's quiet, sweet and does not meow meow often. I'm considering bringing him here for my following PhD study, cuz I know he's the greatest companion in the world. </p>
+        </div>
+        <div class="image" style="order: 1;">
+            <img src="../Yuan Yuan.jpg" alt="Your Cat's Image">
+        </div>
+    </div>
+</body>
+</html>
