@@ -39,4 +39,10 @@ mean(out2)
 ## Problem 6
 It returns the first instance (enabled by the MIN function) of a duplicated birthday, indicating the index at which the first shared birthday appears within the generated set.
 
- 
+The `first_duplicate`` function guarantees that at least two people share the same birthday by creating a roster of 366 people. This ensures a shared birthday because, with only 365 possible birthdays, at least two people must share the same day.
+
+It calculates the position (number of days from the beginning of the year) at which the first duplicate birthday occurs in each simulation.
+
+On the other hand, the `one_roster function` simulates random roster sizes and checks if there's at least one shared birthday in each simulation. We also need to run this simulation multiple times for different roster sizes and calculate the proportion of times there's at least one shared birthday.
+
+Therefore, `first_duplicate`` is more efficient because it directly ensures a shared birthday and calculates the position of the first duplicate in each run.
