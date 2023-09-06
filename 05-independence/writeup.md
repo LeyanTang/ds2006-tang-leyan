@@ -37,4 +37,4 @@ In this specific scenario, if we only rely on conditional probabilities to judge
 
 One major concern would be the selection bias. This happens when people with more severe conditions tend to choose the more aggressive treatment. As a result, the conditional probabilities may not purely reflect how effective the treatment is, but rather, they could be influenced by the fact that people with more severe problems naturally end up in the more intensive treatment group.
 
-In summary, while conditional probabilities provide some insights, they might not be enough to tell us if the treatment is genuinely effective because they can be skewed by factors like selection bias. To get a more solid understanding, we'd need to consider additional research methods and data analysis.
+In summary, while conditional probabilities provide some insights, they might not be enough to tell us if the treatment is genuinely effective because they can be skewed by factors like selection bias. Additionally, it's worth noting that correlation does not necessarily mean causation. To get a more solid understanding, we'd need to consider additional research methods and data analysis.
