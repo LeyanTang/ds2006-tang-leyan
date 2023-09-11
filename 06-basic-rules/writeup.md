@@ -51,11 +51,17 @@ Or, we could run the following command in R to generate the computational result
 
 ```
 n <- 11
-
 1 - exp(lchoose(365,n) + lfactorial(n) - n*log(365))
-
 ```
 
 The result is the same as mathematical solution, which is **0.14114**.
 
 The simulation result is 0.14014 given 100000 repetitions and a seed of 1. The analytical and simulated results are very close, which indicates that simulation is providing an accurate approximation of the probability. The small difference can likely be attributed to the inherent randomness in the simulation process.
+
+Additionallly, if we run the repetitions using the above R code, the generated plot for the probability of at least a shared birthday given a class size of N is pretty close to the one that we had in assignment 3:
+
+```
+bp <- function(n) 1 - exp(lchoose(365, n) + lfactorial(n) - n * log(365))
+plot(1:80, bp(1:80), col = 'lightblue', lwd = 3)
+```
+![image](analytic%20solution%20plot.png)
