@@ -47,4 +47,15 @@ Multiplication rule indicates that the probability of at least two people sharei
 
 P(at least one shared birthday) = 1 - ((365/365) * (364/365) * (363/365) * ... * (355/365)) = 0.14114
 
-The simulation result is 0.14104 given 100000 repetitions and a seed of 1. The analytical and simulated results are very close, which indicates that simulation is providing an accurate approximation of the probability. The small difference can likely be attributed to the inherent randomness in the simulation process.
+Or, we could run the following command in R to generate the computational result:
+
+```
+n <- 11
+
+1 - exp(lchoose(365,n) + lfactorial(n) - n*log(365))
+
+```
+
+The result is the same as mathematical solution, which is **0.14114**.
+
+The simulation result is 0.14014 given 100000 repetitions and a seed of 1. The analytical and simulated results are very close, which indicates that simulation is providing an accurate approximation of the probability. The small difference can likely be attributed to the inherent randomness in the simulation process.
