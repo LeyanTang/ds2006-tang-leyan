@@ -1,4 +1,4 @@
-## Homework 8: Bayes Rule
+# Homework 8: Bayes Rule
 ## Question 1
 
 
