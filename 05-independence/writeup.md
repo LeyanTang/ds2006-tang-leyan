@@ -22,14 +22,12 @@ Therefore, we cannot conclude that drink preference and sugar preference are ind
 
 ## Problem 2
 
-To determine the association between a preference for Cola and a preference for regular sugar, we can look at the contingency table and calculate the conditional probabilities.
+Based on section 4.4, if P(E|K) > P(E|FK) then events E and F are negatively associated on K. To determine the association between a preference for Cola and a preference for regular sugar, our "E" could be a regular preference and "F" could be a cola preference. So when we compare: 
 
 - P(Regular | Colas) = 1/4
-- P(Regular | Not Colas) = 5/6
+- P(Regular) = 6/10
 
-Given that the conditional probability of regular sugar preference is **lower** when someone prefers Cola (1/4) compared to when they prefer not colas (5/6), it indicates a **negative** association.
-
-In summary, a preference for Cola is negatively associated with a preference for regular sugar because the conditional probability of regular sugar preference is lower among those who prefer Cola compared to those who do not prefer Cola.
+It shows that when people prefer colas, they have a **lower** probability of preferring regular drinks compared to when they don't have a sugar preference, therefore the preference for Cola is **negatively** associated with a preference for a regular sugar.
 
 ## Problem 3
 
