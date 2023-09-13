@@ -1,7 +1,7 @@
 # Homework 7
 ## Question 1 & 2
 
-To calculate the total probability of an individual calling soda, I used the rule covered in section 5.6 in the book. This method builds upon the principles of conditional probability, which in turn are based on the fundamental rules of addition and multiplication
+To calculate the total probability of an individual calling soda, I used the rule of the **extension of the conversation** covered in section 5.6 in the book. This method builds upon the principles of conditional probability, which in turn are based on the fundamental rules of addition and multiplication.
 
 To account for regional variation, I break down the calculation into four cases: Northeast, Midwest, West, and South, and then apply the basic rule of addition, which allows us to combine the probabilities from these four cases to get the overall probability.
 
