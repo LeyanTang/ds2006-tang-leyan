@@ -49,6 +49,7 @@ vowel_table <- filtered_samples %>%
 vowel_table
 ```
 Therefore, we get the result showing that vowel **"a"** is most likely to start a word with a 0.39 probability:
+
 ![image](vowel%20probability.png)
 
 ## Question 3
@@ -72,6 +73,7 @@ vowel_probabilities <- vowel_counts %>%
 vowel_probabilities
 ``````
 Therefore, we get the result showing that vowel **"e"** is the first given that the location is 4:
+
 ![image](vowel.png)
 
 ## Question 4
