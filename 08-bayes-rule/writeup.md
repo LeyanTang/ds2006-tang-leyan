@@ -107,4 +107,5 @@ result <- samples %>%
 result
 ``````
 ![image](oddeven.png)
+
 The result shows that first vowels are slightly more likely to appear in even positions (53.06%) compared to odd positions (44.21%).
