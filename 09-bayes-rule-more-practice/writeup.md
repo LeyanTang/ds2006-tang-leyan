@@ -103,6 +103,6 @@ So, the probability that a fair coin was selected given the flip sequence TTT is
 #### P( 2 heads in 3 flips | biased coin selected )
 Let X be the number of heads in 3 flips with the biased coin.
 
-\[P(X = 2 | Biased Coin) = \binom{3}{2} \cdot (0.75)^2 \cdot (0.25)^1 = 3 \cdot 0.5625 \cdot 0.25 = 0.421875\]
+\[P(X = 2 | Biased Coin) = \binom{3}{2} \cdot (0.75)^2 \cdot (0.25)^1\] = 3 * 0.5625 * 0.25 = 0.421875
 
 So, the probability of getting 2 heads in 3 flips when the biased coin is selected is approximately **42.19%**.
