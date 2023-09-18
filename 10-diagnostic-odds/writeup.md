@@ -6,8 +6,8 @@ Based on the given information,  the filled contingency table is as follows:
 
 | | Cancer | Not Cancer | |
 |:---|:---:|:---:|:---:|
-|Test = + |$P(+,cancer) = tp * p$,$P(+\|cancer) = tp$, $P(cancer\|+) = tp*p/(tp*p+(1-tn)*(1-p))$|$P(+,not cancer) = (1-tn)*(1-p)$, $P(+\|not cancer) = 1-tn$, $P(cancer\|+) = (1-tn)*(1-p)/(tp*p+(1-tn)*(1-p))$|$tp*p+(1-tn)*(1-p)$ | |
-|Test = - |$P(-,cancer) = p - tp * p$, $P(-\|cancer) = 1 - tp$, $P(cancer\|-) = (p-tp*p)/p-tp*p+tn*(1-p)$|$P(-,not cancer) = tn*(1-p)$, $P(-\|notcancer) = tn$, $P(not cancer\|-) = tn*(1-p)/p-tp*p+tn*(1-p)$|$p-tp*p+tn*(1-p)$| |
+|Test = + |$P(+,cancer) = tp * p$,$P(+|cancer) = tp$, $P(cancer|+) = tp * p/(tp * p+(1-tn) * (1-p))$|$P(+,not cancer) = (1-tn) * (1-p)$, $P(+|not cancer) = 1-tn$, $P(cancer|+) = (1-tn) * (1-p)/(tp * p+(1-tn) * (1-p))$|$tp * p+(1-tn)*(1-p)$ | |
+|Test = - |$P(-,cancer) = p - tp * p$, $P(-|cancer) = 1 - tp$, $P(cancer\|-) = (p-tp * p)/p-tp * p+tn * (1-p)$|$P(-,not cancer) = tn * (1-p)$, $P(-|notcancer) = tn$, $P(not cancer|-) = tn * (1-p)/p-tp * p+tn * (1-p)$|$p-tp * p+tn * (1-p)$| |
 | |$p$|$1-p$|$1$|
 
 ## Question 2
