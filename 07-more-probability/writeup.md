@@ -23,11 +23,9 @@ $P(West|Soda) = 0.54 (Table 2) \times 0.24 (Table 1) \times 0.685 (Question 1) =
 
 The probability that an individual is from the West given that they used the word "soda" is approximately 18.9%.
 
-## Question 4
+## Question 4 (Resubmitted)
 
-A Dutch Book refers to a strategic opportunity in gambling where an astute bettor exploits disparities in odds provided by different sources to construct a series of bets that ensure a guaranteed profit, regardless of the actual outcomes of the events being bet on. 
-
-For example, imagine two friends offer different bets on a coin toss: Alice pays \$2 for heads, but you owe her \$1 for tails, while Bob offers \$3 for heads and you owe him \$2 for tails. By betting \$1 on heads with Alice and \$1.50 on tails with Bob at the same time, you secure a win no matter the outcome. If it's heads, you gain \$2; if it's tails, you gain \$3. This is a Dutch Book to ensure a profit regardless of the coin's outcome by taking advantage of the different odds Alice and Bob provide.
+In a Dutch book scenario, the bookkeeper cleverly manipulates the odds they offer to the gambler, making sure they use different odds for bets on winning and losing outcomes. This crafty strategy guarantees that the bookkeeper will consistently make a profit, while the gambler ends up losing money.
 
 ## Question 5
 
@@ -49,8 +47,14 @@ Uncertainty can manifest in numerous ways, including complex and nuanced scenari
 
 The author highlights a crucial challenge in the prisoners' dilemma: despite facing uncertainty, expressing this uncertainty doesn't resolve the dilemma. The prisoners cannot cooperate due to the conflict between individual self-interest and collective benefit, leading to hostility rather than explicit announcements of probabilities. 
 
-## Question 9
+## Question 9 (Resubmitted)
 
-In section 5.12, the author discusses the challenge of applying math to the real world, especially when dealing with P(rain tomorrow). It highlights that the real world is uncertain, and mathematical models may not always capture this unpredictability accurately. For example, weather forecasts are complex because many factors influence them, including locations and topography of certain areas. 
+Some probabilities need more specifications and can vary significantly based on different knowledge base. As for P(rain tomorrow), here are the types of variations that could affect our knowledge base:
 
-Lastly, public perception plays a role. If people don't trust forecasts, they may not take necessary precautions when a high probability of adverse weather is predicted. This disconnect between probabilities and trust underscores the importance of clear communication in weather forecasting. For example, if the probability of raining is 0.8 and the actual condition is not raining, people may complain about the forecast. However, the dry weather is indeed covered by the complimentary probability of 0.2, which is ignored. 
+- **Location-Specific**: Probability of rain can vary greatly from one location to another. For instance, in a desert region like Phoenix, Arizona, the probability of rain tomorrow might be very low throughout the year. However, in a place like Seattle, Washington, where it's known for its frequent rain, the probability of rain tomorrow might be relatively high, especially during certain seasons. 
+
+- **Time of Year**: The time of year is also crucial. In some regions, the likelihood of rain varies seasonally. For example, during the summer months in the Midwest United States, there might be a higher probability of rain due to thunderstorms, while in the winter, it might be lower.
+
+- **Public Perceptions**: Public perceptions can affect the probability of rain. In some areas, people may perceive a higher likelihood of rain than what the meteorological data suggests, leading to differences between perceived and actual probabilities. For instance, a location with a history of drought may have residents who think it's more likely to rain than it statistically is, or vice versa.
+
+- **Confirmation**: To confirm the probability of rain tomorrow, meteorological data and tools like weather forecasts, historical weather patterns, and satellite imagery are essential.
