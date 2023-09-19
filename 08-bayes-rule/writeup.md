@@ -1,5 +1,5 @@
 # Homework 8: Bayes Rule
-## Question 1
+## Question 1 - Resubmitted
 
 The first question can be translated into calculating $P(Position = 3 | First Vowel = y)$. Therefore, this is the conditional probability using the formula: 
 
@@ -17,11 +17,11 @@ data <- mystery(200000)
 # Calculate the conditional probability P(A | B) where A: *y* occurs in the third position,
 # and B: *y* is the first vowel
 
-# Count the total occurrences of 'y' (including missing values)
-total_y_count <- length(data$vowel[data$vowel == 'y'])
+# Count the total occurrences of 'y' (excluding missing values)
+total_y_count <- sum(data$vowel == 'y' & !is.na(data$vowel))
 
-# Count the occurrences of 'y' in the third position (including missing values)
-y_in_third_position_count <- length(data$location[data$location == 3 & data$vowel == 'y'])
+# Count the occurrences of 'y' in the third position (excluding missing values)
+y_in_third_position_count <- sum(data$location == 3 & data$vowel == 'y' & !is.na(data$vowel))
 
 # Calculate the conditional probability as a floating-point number
 P_A_given_B <- as.numeric(y_in_third_position_count) / as.numeric(total_y_count)
@@ -29,8 +29,9 @@ P_A_given_B <- as.numeric(y_in_third_position_count) / as.numeric(total_y_count)
 # Print the result
 print(P_A_given_B)
 
+
 ```
-The computed result is **$0.02602436$**, which stands for the probability of the first vowel appears in the third position given that it is y.
+The computed result is **$0.0994025$**, which stands for the probability of the first vowel appears in the third position given that it is y.
 
 
 ## Question 2
