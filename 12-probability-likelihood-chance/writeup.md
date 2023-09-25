@@ -16,9 +16,9 @@ Yes the series will be exchangeable, because even through there's homefield adva
 In the book, it points out that `Probability` refers to the belief, `likelihood` to the uncertainty of a single event under different circumstances, and chance is a concept pertaining to a `Bernoulli` series. Therefore, in this case, 
 
 - Probability: 
-1. $$P(\theta_i)$. This represents the prior probability, which is a constant belief about the parameter $\theta_i$ before considering the specific series outcome.
-2. $P(\theta_i | \text{ Series outcome is } ABAAA\text{ })$. This represents the conditional probability, denoted as $P$, of the unknown parameter $\theta_i$ (where $i$ could be A or B) given the observed series outcome "ABAAA." It reflects our updated belief or probability assessment of whether the series is played in stadium A or B based on the specific observed sequence. 
+1. $P(\theta_i)$. This is the prior probability.
+2. $P(\theta_i | \text{ Series outcome is } ABAAA\text{ })$. This represents the conditional probability, which is also the posterior probability.
 
-- Likelihood: $P(\text{Series outcome is } ABAAA\text{ }|\theta_i)$. This represents the likelihood, denoted as $P$, of observing the series outcome "ABAAA" given a specific value of the parameter $\theta_i$. It measures how well the data (series outcome) supports different values of the parameter. 
+- Likelihood: $P(\text{Series outcome is } ABAAA\text{ }|\theta_i)$. This represents the likelihood of observing the series outcome "ABAAA" given a specific value of the parameter $\theta_i$. 
 
-- Chance: $P(\text{ Series outcome is } ABAAA\text{ })$. In the context of a Bernoulli series, this term represents the overall probability of observing the series outcome "ABAAA" regardless of whether it is played in stadium A or B. It can be associated with the concept of "chance" as it quantifies the probability of observing a specific sequence of events in a series of Bernoulli trials.
+- Chance: The "$\theta_i$" from the $P(\text{Series outcome is } ABAAA\text{ }|\theta_i)$ stands for "chance" in this equation as it represents the "frequency probability".
