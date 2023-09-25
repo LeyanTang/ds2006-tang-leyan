@@ -21,4 +21,4 @@ In the book, it points out that `Probability` refers to the belief, `likelihood`
 
 - Likelihood: $P(\text{Series outcome is } ABAAA\text{ }|\theta_i)$. This represents the likelihood of observing the series outcome "ABAAA" given a specific value of the parameter $\theta_i$. 
 
-- Chance: The "$\theta_i$" from the $P(\text{Series outcome is } ABAAA\text{ }|\theta_i)$ stands for "chance" in this equation as it represents the "frequency probability".
+- Chance: The $\theta_i$ from the $P(\text{Series outcome is } ABAAA\text{ }|\theta_i)$ stands for "chance" in this equation as it represents the "frequency probability".
