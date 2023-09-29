@@ -9,13 +9,13 @@ On the other hand, in the agricultural trial, the primary challenge lies in the 
 ## Question 2
 
 Agricultural Trial Figure:
-
+``````
   +--- Variety ---+
   |               |
   |               |
   V               V
  Yield < ------ Height
-
+``````
 
 ## Question 3
 
