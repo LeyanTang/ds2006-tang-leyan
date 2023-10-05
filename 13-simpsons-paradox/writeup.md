@@ -51,3 +51,26 @@ Based on the calculation, the absolute $\Delta$ is the same but the relative $\q
 
 $\Delta$ = -0.1
 $\quad \rho$ = $\frac{6-4\alpha}{7-4\alpha}$
+
+Explanation for the general equation:
+If alpha is the proportion of women, let men be 40, so that women are 40*alpha/(1-alpha).
+
+So Men's table is:
+|           | $R$ | $R^c$ | Marginal | 
+|-----------|---------------|--------------------|-------------------------------|
+| $T$  |12 |8 | 20  |  
+| $T^c$ | 14 | 6 | 20|
+
+Women's table is:
+
+|           | $R$ | $R^c$ | Marginal | 
+|-----------|---------------|--------------------|-------------------------------|
+| $T$  |4*alpha/(1-alpha) | 16*alpha/(1-alpha)  |  20*alpha/(1-alpha)|
+| $T^c$ | 6*alpha/(1-alpha)| 14*alpha/(1-alpha) | 20*alpha/(1-alpha)|
+
+Therefore, the two components are calculated by adding cells up:
+
+- P(R/T) = (4*alpha/(1-alpha) + 12) / (20*alpha/(1-alpha) + 20)
+- P(R/T^c) = (6*alpha/(1-alpha) + 14) / (20*alpha/(1-alpha) + 20)
+
+And then two ratios can be calculated by these two components.
