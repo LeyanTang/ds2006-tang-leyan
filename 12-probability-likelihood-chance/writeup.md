@@ -1,7 +1,7 @@
 # Homework 12
-## Question 1
+## Question 1 (resubmitted)
 
-No, the series will not be exchangeable because of the homefield advantage. When the series is played exclusively at team A's stadium, Team A is more likely to win games when they are at home, so the sequences that involve Team A wins will be more likely than Team B wins. As a result, the probabilities associated with different sequences will not be equal, and the series is no longer exchangeable.
+Yes, the series will be exchangeable despite the homefield advantage. Even if Team A is more likely to win games when they are at home, the probability of team A winning does not change from game to game, so it remains constant. As a result, the series will be exchageable.
 
 ## Question 2
 
