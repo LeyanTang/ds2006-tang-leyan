@@ -5,33 +5,54 @@ In this scenario, each student's outcome is independent of the others, meaning t
 
 We use these functions in R to calculate such probability:
 ``````
-p_success <- 0.7
-n_trials <- 29
-
-prob_3 <- pbinom(3, size = n_trials, prob = p_success)
-prob_3
+prob_fewer_than_3 <- 1 - pbinom(25, 29, 0.7)
 ``````
-The probability that 3 or fewer students do not complete the degree is 3.342193e-11.
+The probability that 3 or fewer students do not complete the degree is 0.01209502.
 
 ## Question 2
-
-Since the professor decides to stop advising after a certain number of students, it implies that there is no replacement. The professor's interactions with students are not independent from year to year, and there is no replenishment of students.
 
 We can use the R code to solve this problem:
 ``````
 p_success <- 0.7
 years <- 20
 students_to_advise <- 10
+simulations <- 100000
 
-prob_retire_in_20_years <- dbinom(students_to_advise, size = years, prob = p_success)
-prob_retire_in_20_years
+# Initialize a counter for retirements
+retirement_count <- 0
+
+# Run the simulation
+for (sim in 1:simulations) {
+  students_remaining <- students_to_advise
+  
+  for (year in 1:years) {
+    if (year <= students_to_advise) {
+      students_remaining <- students_to_advise - year + 1
+    }
+    
+    # Randomly determine if a student completes their degree this year
+    students_completed_this_year <- rbinom(students_remaining, size = 1, prob = p_success)
+    students_remaining <- students_remaining - sum(students_completed_this_year)
+    
+    # If the professor reaches 0 remaining students, they retire
+    if (students_remaining <= 0) {
+      retirement_count <- retirement_count + 1
+      break
+    }
+  }
+}
+
+# Calculate the probability of retirement within 20 years
+probability_retirement <- retirement_count / simulations
+cat("Estimated probability of retirement in 20 years:", probability_retirement, "\n")
+
 ``````
 
-The probability that the professor will retire in 20 years is 0.03081708.
+The probability that the professor will retire in 20 years is 1.
 
-## Quesiton 3
+## Question 3
 
-The negative binomial distribution is appropriate for situations where we want to calculate the probability of a specific number of successes (in this case, 3 correct solutions) occurring before a specific number of failures (25 submissions) in a sequence of independent trials. In this scenario, we are interested in achieving 3 successes before 25 submissions, and each submission is considered an independent trial.
+In this scenario, we are interested in achieving 3 successes before 25 submissions, and we can use pbinom to count for the failed trails until the successes.
 
 We can use the R codes as follows:
 ``````
@@ -39,7 +60,7 @@ p_success <- 0.1
 n_successes <- 3
 n_submissions <- 25
 
-prob_3_prizes_by_25_submissions <- dnbinom(n_successes, size = n_successes, prob = p_success)
-prob_3_prizes_by_25_submissions
+prob_3_prizes_by_25 <- pnbinom(n_submissions-n_successes, n_successes, prob = p_success)
+prob_3_prizes_by_25
 ``````
-Therefore, the probability that all three prizes will be awarded by the 25th submission is 0.00729.
+Therefore, the probability that all three prizes will be awarded by the 25th submission is 0.4629059.
