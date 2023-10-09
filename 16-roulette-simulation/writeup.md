@@ -64,3 +64,5 @@ As I run the simulation, I found the plots vary significantly as the number of r
 
 Description: In general, the earnings increase until the wagers reach somewhere near 188, and it declines quickly later. After around 300 wagers, the plot has much zig-zagging.
 
+## Parameter changing
+

@@ -9,46 +9,18 @@ prob_fewer_than_3 <- 1 - pbinom(25, 29, 0.7)
 ``````
 The probability that 3 or fewer students do not complete the degree is 0.01209502.
 
-## Question 2
-
-We can use the R code to solve this problem:
+## Question 2 (resubmitted)
+Since the professor could only take students during 15 years because of the 5-year program duration, we can calculate the probability that the number of students are equal to or below 9 and take the complimentary probability to arrive at the result:
 ``````
-p_success <- 0.7
-years <- 20
-students_to_advise <- 10
-simulations <- 100000
+p <- 0.7
+n_successes <- 9
+n_failures <- 15
 
-# Initialize a counter for retirements
-retirement_count <- 0
-
-# Run the simulation
-for (sim in 1:simulations) {
-  students_remaining <- students_to_advise
-  
-  for (year in 1:years) {
-    if (year <= students_to_advise) {
-      students_remaining <- students_to_advise - year + 1
-    }
-    
-    # Randomly determine if a student completes their degree this year
-    students_completed_this_year <- rbinom(students_remaining, size = 1, prob = p_success)
-    students_remaining <- students_remaining - sum(students_completed_this_year)
-    
-    # If the professor reaches 0 remaining students, they retire
-    if (students_remaining <= 0) {
-      retirement_count <- retirement_count + 1
-      break
-    }
-  }
-}
-
-# Calculate the probability of retirement within 20 years
-probability_retirement <- retirement_count / simulations
-cat("Estimated probability of retirement in 20 years:", probability_retirement, "\n")
-
+prob_retire_20 <- 1-pbinom(n_successes, n_failures, prob = p)
+prob_retire_20
 ``````
 
-The probability that the professor will retire in 20 years is 1.
+The probability that the professor will retire in 20 years is .7216214.
 
 ## Question 3
 
