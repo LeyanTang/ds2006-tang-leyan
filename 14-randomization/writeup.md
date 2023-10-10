@@ -30,20 +30,18 @@ diabetic_participants <- 25
 diabetic_group <- rep("With Diabetes", diabetic_participants)
 non_diabetic_group <- rep("Without Diabetes", total_participants - diabetic_participants)
 
-# Randomly shuffle the treatment assignment
-treatment_assignment <- sample(c("T", "T^c"), total_participants, replace = TRUE)
+# Randomly shuffle the treatment assignment for diabetic and non-diabetic groups separately
+treatment_assignment_diabetic <- sample(c("T", "T^c"), diabetic_participants, replace = TRUE)
+treatment_assignment_non_diabetic <- sample(c("T", "T^c"), total_participants - diabetic_participants, replace = TRUE)
 
 # Combine the groups for the randomization table
 diabetes_status <- c(diabetic_group, non_diabetic_group)
+treatment_assignment <- c(treatment_assignment_diabetic, treatment_assignment_non_diabetic)
 
 # Create a data frame for the randomization table with intuitive column names
 randomization_table <- data.frame(
   Diabetes_Status = diabetes_status,
   Treatment = treatment_assignment
 )
-
-# Print the randomization table
-cat("Randomization Table:\n")
-print(randomization_table)
 ``````
 
