@@ -73,9 +73,28 @@ And there are the plots generated:
 
 ![image](abs.png)
 
+Interpretation: 
+
+In the first set of graphs (Absolute Error), the x-axis represents the number of replicates in a log2 scale, which essentially shows the growth in sample size.
+
+The y-axis represents the absolute errors, which measures how far off the estimated probability is from the true value.
+
+As we can see, for each probability level (different colors), the absolute error decreases as the number of replicates increases. This is an intuitive result because with more data, our estimations tend to be closer to the true values.
+The linear relationship between the number of replicates (on a log2 scale) and absolute error suggests that the accuracy of our estimations improves as we collect more data.
+
 2. Relative error
 
 ![image](rel.png)
+
+Interpretation:
+
+In the second set of graphs (Relative Error), the x-axis remains the number of replicates in a log2 scale.
+
+The y-axis represents the relative errors, which scales the error to the magnitude of the true value.
+
+Similar to the absolute error graphs, we observe that the relative error decreases as the number of replicates increases for each probability level.
+
+This indicates that, with more data, our estimations become more accurate in relation to the true values, irrespective of the scale of the probabilities involved.
 
 If changing the y-axis to the log2 scale, the plots look like as below:
 
@@ -83,8 +102,30 @@ If changing the y-axis to the log2 scale, the plots look like as below:
 
 ![image](abs2.png)
 
+Interpretation:
+
+In the log2-scaled Absolute Error graph, the x-axis still represents the number of replicates in a log2 scale.
+
+The y-axis, now in a log2 scale, represents the log-transformed absolute errors. This transformation helps compress and visualize a wide range of absolute errors.
+
+The linear relationship between the x-axis (log2 of replicates) and the log2-scaled absolute error suggests that as the sample size (number of replicates) increases exponentially, the log-scaled absolute error decreases in a linear fashion.
+
 2. Relative error
 
 ![image](rel2.png)
 
-It shows a linear relationship between the IV and DV.
+Interpretation:
+
+In the log2-scaled Relative Error graph, similar to the absolute error, the x-axis represents the log2 of the number of replicates.
+
+The y-axis, also log2-scaled, shows that the log-transformed relative errors decrease linearly as the number of replicates increases on a log2 scale.
+
+## Key Takeaways
+
+1. When changing the y-axis to a log2 scale in both Absolute Error and Relative Error graphs, a linear relationship is observed between the log2-scaled errors and the log2-scaled number of replicates.
+
+2. Increasing the sample size (number of replicates) exponentially leads to a predictable and steady decrease in errors, whether they are absolute or relative.
+
+3. Applying a log2 transformation to the y-axis in both the Absolute Error and Relative Error graphs reveals a linear relationship between the log2-scaled errors and the log2-scaled number of replicates. This linear relationship demonstrates that as the sample size (number of replicates) increases exponentially, the log2-scaled errors decrease linearly.
+
+4. These observations underscore the critical role of sample size in probability estimation and reinforce the need for a robust data collection process to enhance the accuracy of predictions.
