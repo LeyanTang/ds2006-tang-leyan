@@ -82,73 +82,67 @@ Holding all others stopping rules constant (winning_threshold <- 300, max_games 
 Here's the code to generate the plot:
 ``````
 require(magrittr)
-
-run_simulation_for_budgets <- function(starting_budget, winning_threshold, max_games, max_wager, num_simulations) {
-  average_profits <- numeric(length(starting_budget))
+simulate_one_series <- function(starting_budget, winning_threshold, max_games, max_wager, num_simulations) {
+  average_profits <- numeric(num_simulations)
   
-  for (i in 1:length(starting_budget)) {
-    set.seed(i) 
-    ledger <- one_series(max_games, starting_budget[i], winning_threshold, max_wager)
-    average_profits[i] <- mean(replicate(num_simulations, profit(ledger)))
+  for (i in 1:num_simulations) {
+    set.seed(i)
+    ledger <- one_series(max_games, starting_budget, winning_threshold, max_wager)
+    average_profits[i] <- profit(ledger)
   }
   
-  return(average_profits)
+  return(mean(average_profits))
 }
 
 # Set the parameters
-starting_budget <- seq(100, 500, by = 20) 
-winning_threshold <- 600 
+winning_threshold <- 300
 max_games <- 1000
 max_wager <- 100
 num_simulations <- 1000
 
-average_profits <- run_simulation_for_budgets(starting_budget, winning_threshold, max_games, max_wager, num_simulations)
+starting_budgets <- seq(100, 500, by = 50)
+results <- data.frame(starting_budget = starting_budgets, average_profit = 0)
 
-plot(starting_budget, average_profits, type = "l", lwd = 2, xlab = "Starting Budget", ylab = "Average Profit",
+for (i in 1:length(starting_budgets)) {
+  starting_budget <- starting_budgets[i]
+  print(paste("Simulating for starting budget:", starting_budget))
+  average_profit <- simulate_one_series(starting_budget, winning_threshold, max_games, max_wager, num_simulations)
+  results[i, "average_profit"] <- average_profit
+}
+
+plot(results$starting_budget, results$average_profit, type = "l", lwd = 2, xlab = "Starting Budget", ylab = "Average Profit",
      main = "Effect of Starting Budget on Average Profit")
-``````
 
+``````
 ![image](startingbudget.png)
 
-The first graph in our analysis displays the impact of varying starting budgets on the average profit obtained from a gambling scenario. The x-axis represents different starting budgets, while the y-axis shows the average profit. The simulation was run with starting budgets ranging from \$100 to \$500 in increments of \$100. There are decreasingly ups and downs as the starting budget increases.
-
-Using the same coding logic, I generated the other three plots by changing the three parameters:
+When starting with a budget of 100 dollars, the average profit is distinctly negative at -50 dollars, indicating that the strategy typically results in substantial losses. As the initial budget increases to 200 dollars, the average profit gradually ascends toward zero, implying that players can expect relatively smaller losses but still remain in the negative territory. However, when the budget is set at 300 dollars or higher, the average profit remains negative, signifying that even with a more substantial initial stake, the Martingale strategy fails to yield positive outcomes. 
 
 ### Changing winning_threshold
 
 Holding all other stopping rules constant (starting_budget <- 200
 , max_games <- 1000, max_wager <- 100), I used the same for-loop logic to see how the winnning_threshold would affect the profit, the plot looks like this:
 
-![image](winningthreshold.png)
+![image](winning.png)
 
-- Increase to \$400: Initially, as the winning threshold is elevated to \$400, the average profit demonstrates a substantial increase. This pattern is in alignment with a more conservative gambling approach. Players, when setting a higher threshold, become inclined to cease their gambling endeavors once they have achieved or surpassed this more substantial profit level. Consequently, the simulation illustrates an increase in average profit when transitioning from a lower to a \$400 threshold.
-
-- Decrease Beyond \$400: However, a noteworthy observation within the simulation results is that once the winning threshold surpasses \$400 and reaches higher levels, the average profit begins to decline. This decline is indicative of the diminishing returns associated with overly conservative gambling strategies. Setting an excessively high winning threshold might prolong the gaming session and restrict opportunities for realizing profits, potentially leading to a decrease in the average profit.
+The average profit begins at zero when the winning threshold is set to 100, indicating a balanced outcome, but then steadily declines as the winning threshold increases, reaching its lowest point when the threshold is 700. This trend highlights that as the desired winning amount becomes more ambitious, the strategy's profitability diminishes, ultimately leading to more substantial average losses.
 
 ### Changing max games
 Holding all other stopping rules constant (starting_budget <- 200
 , winning_threshold <- 300 max_wager <- 100), I used the same for-loop logic to see how the max_games would affect the profit, the plot looks like this:
 
-![image](maxgames.png)
+![image](maxg.png)
 
-- Initial Increase: As the "max_games" parameter increases, the plot demonstrates a clear uptick in the average profit. This trend aligns with the fundamental notion that a higher value for "max_games" provides more extensive gaming opportunities. With a greater number of games available for play, the chances to accumulate profits multiply, contributing to the initial surge in average profit.
-
-- Plateau Phase: Notably, as the "max_games" parameter reaches an approximate value of 900, the average profit enters a phase of relative stability. This plateau effect signifies that beyond a certain threshold, further extending the maximum number of games does not markedly influence the average profit. The profitability rate maintains consistency, indicating diminishing returns in terms of profit growth.
-
-- Subsequent Decline: The plot highlights a decrease in average profit as "max_games" continues to increase, eventually reaching around 1250. This decline in profit at higher values of "max_games" can be attributed to several factors. Extended gaming sessions elevate the likelihood of encountering unfavorable sequences, which lead to more frequent losses. Moreover, prolonged gameplay exposes players to increased risks and, in some instances, substantial losses, contributing to the observed decline in average profit.
+The initial setting of 500 games results in an average profit of approximately -48, indicating a notable loss on average. However, as the maximum games increase, the average profit experiences a rapid decline, reaching its lowest point at around -51 when the maximum games are set to 780. This suggests that extending the duration of the game exacerbates the losses incurred by the strategy, potentially due to the increased opportunity for unfavorable outcomes. Surprisingly, once the maximum games surpass 780, the average profit remains relatively flat, indicating that further extending the duration of play does not significantly affect the strategy's performance. 
 
 ### Changing max wager
 
 Holding all other stopping rules constant (starting_budget <- 200
 , winning_threshold <- 300, max_games <- 1000), I used the same for-loop logic to see how the max_wager would affect the profit, the plot looks like this:
 
-![image](maxwager.png)
+![image](maxw.png)
 
-- Initial Increase: As the "max_wager" parameter is augmented, the plot displays an initial increase in average profit. This trend can be attributed to the fact that a higher maximum wager permits more substantial bets, potentially leading to more significant wins if luck is favorable.
-
-- Stabilization Phase: Following the initial increase, there is a phase of relative stability in average profit. The profit remains relatively constant as "max_wager" is further increased. This phase suggests that beyond a certain threshold, raising the maximum wager amount does not significantly influence the average profit. Profitability stabilizes as a result of this limit, and the potential gains do not increase at the same rate as the wagers.
-
-- Subsequent Decline: Interestingly, as the "max_wager" parameter continues to rise, the plot demonstrates a decline in average profit. This decrease in profit at higher values of "max_wager" can be attributed to heightened risk exposure. Larger wagers may lead to more substantial losses in unfavorable game outcomes, resulting in the observed decline in average profit.
+As the maximum wager increases, we observe that the average profit initially experiences a gradual rise. However, this upward trend slows down as the maximum wager exceeds 150, and the average profit remains flat. Despite the gradual increase, it's essential to note that the average profit remains consistently negative, indicating that the Martingale strategy, even with higher maximum wagers, is not capable of generating positive average returns in the long run. 
 
 ## Calculation of average number of plays
 To calculate the average number of playes within the stopping rules, I used this code:
