@@ -95,7 +95,7 @@ simulate_one_series <- function(starting_budget, winning_threshold, max_games, m
 }
 
 # Set the parameters
-winning_threshold <- 600
+winning_threshold <- 1000
 max_games <- 1000
 max_wager <- 100
 num_simulations <- 1000
@@ -116,9 +116,7 @@ plot(results$starting_budget, results$average_profit, type = "l", lwd = 2, xlab 
 ``````
 ![image](starting.png)
 
-
-The parameter changing plot for starting budget reveals a noteworthy trend in the Martingale strategy's performance. With an initial budget of $100, the average profit starts with a substantial loss of around -70, indicating the strategy's vulnerability to rapid depletion of funds. As the starting budget increases to $350, the average profit initially declines sharply, but it gradually begins to recover, highlighting the strategy's potential to rebound from losses. However, what remains consistent is that the average profit consistently stays negative, emphasizing the Martingale strategy's tendency to result in long-term losses despite any temporary recoveries.
-
+As the starting budget increases, the average profit declines steadily and remains negative, emphasizing the Martingale strategy's tendency to result in long-term losses despite any temporary recoveries.
 
 ### Changing winning_threshold
 
