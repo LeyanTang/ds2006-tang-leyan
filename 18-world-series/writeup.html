@@ -6,7 +6,11 @@
 <body>
 
 <h2>Q1:</h2>
-<p>In a "first to k wins" process, the outcome is considered a bivariate random variable, and this designation pertains to the overall series result. The two outcomes that form this bivariate random variable are: (1).The Number of Wins by the Diamondbacks (X) (2).The Number of Wins by the Rangers (Y). The term "bivariate" indicates that we are simultaneously considering these two variables, rather than focusing solely on one. These variables are interrelated since the series concludes once one of them reaches k wins. In statistical terms, this bivariate random variable represents the joint distribution of X and Y, allowing us to analyze their interdependence and assess the likelihood of one team winning the series over the other. </p>
+<p>In a "first to k wins" process, the outcome is considered a bivariate random variable. The two variables of interest are:
+
+  The total number of games played in the series (X).
+  The identity of the team that wins the series (Y).
+These two variables are interrelated, as the series concludes when one of them reaches the specified value of 'k.'</p>
 
 <h2>Q2:</h2>
 <p>Say p is P_d within the table, then the cross table containing joint distribution of the bivariate random variable is as follows:</p>
@@ -23,14 +27,13 @@ pnbinom(3, 4, x): This is a probability mass function for the negative binomial 
 <img src="q4.png">
 
 <h2>Q5:</h2>
-<p>Given that someone could change the World Series to be first-to-5-wins or some other first-to-k wins series, the smallest k so that P(Diamondbacks win World Series | Pd = 0.55) >= 0.8 should be when pnbinom(k-1, k, 0.55) is greater or equal to 0.8. Then we can derive a plot (k being the x-axis and pnbinom being the y-axis) with the k ranging from 4 to 55, and we can identify the smallest k is 36.</p>
+<p>Given that someone could change the World Series to be first-to-5-wins or some other first-to-k wins series, the smallest k so that P(Diamondbacks win World Series | Pd = 0.55) >= 0.8 should be when pnbinom(k-1, k, 0.55) is greater or equal to 0.8. Then we can derive a plot (k being the x-axis and pnbinom being the y-axis) with the k ranging from 4 to 55, and we can identify the smallest k is 36. This horizontal line represents the critical threshold of 0.8. Wherever this line intersects the plot, it signifies the smallest 'k' value required for the Diamondbacks to have at least an 80% chance of winning the World Series. In this case, we find that this smallest 'k' value is indeed 36, meaning that a "first-to-36-wins" series would meet the specified criterion.</p>
 <img src="q5.png">
 
 <h2>Q6:</h2>
 <p>We replace the 0.55 with x in the previous function in Q5, and plot the function with x-axis being the Pd and pnbinom being the y axis.</p>
-<p>The x-axis of the plot represents different values of 'k' (the number of wins required for a series victory), ranging from 4 to 55. The y-axis, however, shows the probability of the Diamondbacks winning the World Series. When this probability reaches 0.8, we add a horizontal line to the plot.
+<p>  We examine how the probability of the Diamondbacks winning a single game ('x') affects the smallest 'k' needed to have an 80% or better chance of winning the World Series. The plot illustrates that as 'x' increases, 'k' decreases. Specifically, when 'Pd' (probability) reaches around 0.75, it's over 80% likely that the Diamondbacks will win the series with 'k' set to 4. This emphasizes the critical role of game-level performance in predicting the series outcome.
 
-  This horizontal line represents the critical threshold of 0.8. Wherever this line intersects the plot, it signifies the smallest 'k' value required for the Diamondbacks to have at least an 80% chance of winning the World Series. In this case, we find that this smallest 'k' value is indeed 36, meaning that a "first-to-36-wins" series would meet the specified criterion.
   </p>
 <img src="q6.png">
 
