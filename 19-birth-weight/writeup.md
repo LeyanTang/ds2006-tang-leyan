@@ -3,8 +3,9 @@
 Using the ecdf function in R, we can plot the mother's age and its empirical CDF:
 ![image](a1.png)
 
-We can also use ``ecdf_obj <- ecdf(birthwt$age)
-prob_35_or_higher <- 1 - ecdf_obj(35)`` to calculate that the probability of observing an age of 35 or higher among mother-infant pairs is *0.01587302*.
+We can also use ``ecdf_obj <- ecdf(MASS::birthwt$age)
+prob_35_or_higher <- 1 - ecdf_obj(34)
+prob_35_or_higher`` to calculate that the probability of observing an age of 35 or higher among mother-infant pairs is *0.02645503*.
 
 ## Assessment Section 2
 By tuning the slider, I found the best setting to fit the birthweight distribution is when mean is 2970 and the standard deviation is 740.
