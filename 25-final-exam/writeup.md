@@ -1,6 +1,8 @@
 # DS 2006 Final Exam
-**Name: Leyan Tang**
-**ComputingID: gnv2nh**
+- **Name: Leyan Tang**
+- **ComputingID: gnv2nh**
+- **Date: December 13th, 2023**
+
 ## 1. The Monty Hall Problem
 **A. Strategy 1 wining probability with equal prize assignment**
 
