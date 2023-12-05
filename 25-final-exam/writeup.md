@@ -6,18 +6,55 @@
 ## 1. The Monty Hall Problem
 **A. Strategy 1 wining probability with equal prize assignment**
 
+P(winning a car) = 1/3. When the person made the initial decision to choose door A, there's 1/3 probability that the chosen door has the car and 2/3 probability that the chosen door contains goat because of the assumption that the prize assignment is equal across these three doors. Now, even the host reveals a door B that contains a goat, the initial probabilities still remain unchanged.
 
+However, the for strategy 2, the probabilities to win a car by switching is 2/3. This is because by revealing the goat in another door, the host reassigns the probabilities from that from original one of the goat door to the remaining unopen goat door, making it to have the probability of 2/3, while the original chosen door's probability remains the same of 1/3.
+
+Therefore, the probability of switching is always higher than the initial choise because the host's action updates the information about the location of the car, and the contestant can capitalize on this by switching doors. The probabilities favor the unopened door, making the switching strategy more likely to result in winning the car compared to sticking with the initial choice.
 
 **B. Winning probabilities using R Simulations**
+Based on the game function, I ran 10000 simulations and calculated the probabilities for two strategies with random prize assignments:
 
+``````
+num_simulations <- 10000
+wins_staying <- 0
+wins_switching <- 0
 
+for (i in 1:num_simulations) {
+  results <- game()
+  wins_staying <- wins_staying + (results[1] == "car")
+  wins_switching <- wins_switching + (results[2] == "car")
+}
+
+prob_staying <- wins_staying / num_simulations
+prob_switching <- wins_switching / num_simulations
+
+cat("Strategy 1:", prob_staying, "\n")
+cat("Strategy 2:", prob_switching, "\n")
+``````
+Based on the simulation, probability of winning the car with strategy 1 is 0.3332, and probability of winning the car with strategy 2 is 0.6668, which closely corresponds to the mathematical methods in step A.
 
 **C. Communicating uncertainty**
 
+To further communicate the simulation error, based on Central Limit Theorem, using the mean and standard deviation from the sampling distributions for strategy 1 and strategy 2, and with a 95% confidence interval, I calculated the confidence intervals for the two strategies:
 
+``````
+conf_int_prob_staying <- qnorm(c(0.025, 0.975), mean_prob_staying, sd_prob_staying / sqrt(num_simulations))
+conf_int_prob_switching <- qnorm(c(0.025, 0.975), mean_prob_switching, sd_prob_switching / sqrt(num_simulations))
+``````
+
+The result table is shown below:
+
+![image](p1.png)
+
+There's the inherent variability in the simulations, reflected in the standard deviation of approximately 0.4729 for both staying and switching strategies. The standard deviation provides a measure of the dispersion in the simulated outcomes. 
+
+To further quantify the uncertainty, I computed 95% confidence intervals for both strategies. For the staying strategy, the interval [0.3284, 0.3470] indicates that we can be reasonably confident that the true probability of winning lies within this range. Similarly, for the switching strategy, the 95% confidence interval [0.6530, 0.6716] provides a plausible range for the true probability. This means that, within a 95% confidence level, we can reasonably expect the true probability of winning to be within the specified range for each strategy.
 
 ## 2. Conditional Probability
 **A. Probability Table**
+
+
 
 **B. Positive predictive value of the test**
 
