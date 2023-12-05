@@ -1,7 +1,7 @@
 # DS 2006 Final Exam
-- **Name: Leyan Tang**
-- **ComputingID: gnv2nh**
-- **Date: December 13th, 2023**
+- **Name**: Leyan Tang
+- **ComputingID**: gnv2nh
+- **Date**: December 13th, 2023
 
 ## 1. The Monty Hall Problem
 **A. Strategy 1 wining probability with equal prize assignment**
@@ -53,23 +53,60 @@ To further quantify the uncertainty, I computed 95% confidence intervals for bot
 
 ## 2. Conditional Probability
 **A. Probability Table**
-
-
+|             | D+    | D- | Margin  |
+| ----------- | ----------- | ----------- | ----------- |
+| **T+** | 0.0008    | 0.0999    | 0.1007 |
+| &nbsp;&nbsp;&nbsp; Row |0.0079| 0.9921  | |
+| &nbsp;&nbsp;&nbsp; Col | 0.8 | 0.1  | |
+| **T-** | 0.0002  |0.8991   | 0.8993 |
+| &nbsp;&nbsp;&nbsp; Row | 0.0002  | 0.9998  | |
+| &nbsp;&nbsp;&nbsp; Col | 0.2 |0.9 | |
+| Margin | 0.001  | 0.999   | 1 |
 
 **B. Positive predictive value of the test**
+Based on Bayes' Rule, P(D+|T+) can be calculate as P(T+|D+)*P(D+)/P(T+), which is `0.00794439`, as is shown in the row probability on the top left cell.
 
 **C. Calculation of p when P(D+|T+) is 0.5**
+If `P(T+|D+) = P(T-|D-) = p`, the key components consisting of are calculated as:
+
+- P(T+|D+) = p
+- P(D+) = 0.001
+- P(T+) = 0.001*p + 0.999*(1-p) = 0.999-0.998*p
+
+So then the equation of the positive predictive value is p*0.001/(0.999-0.998*p). Equating it to be 0.5, the required p is `0.999`.
 
 ## 3. Discrete Distributions
 **A. 90th percentile for the number of car accidents**
 
+Using the following code, I calculated that the 90th percentile is 8 accidents per day:
+``````
+percentile_90 <- qpois(0.9, lambda = 5)
+``````
+
 **B. Density Plot**
+Using the code as below, I generated the density plot:
+``````
+accident_counts <- seq(100, 200, by = 1)
+density <- dpois(accident_counts, lambda =  5*30)
+
+ggplot(data = data.frame(x = accident_counts, y = density), aes(x, y)) +
+  geom_bar(stat = "identity",width = 0.8) +
+  labs(title = "Analytical method: Density Plot of Accidents in a 30-Day Period",
+       x = "Number of Accidents",
+       y = "Density")
+``````
+
+![image](p2.png)
 
 **C. Probability of observing 180 or more accidents in a 30 day period**
+
+Using `prob_180_or_more <- 1 - ppois(180 - 1, lambda = 5*30)`, I calculated that this tail probability to be `0.009417947`.
 
 
 ## 4. Continuous Distributions
 **A. Probability of DBP lying between 90 and 110 mmHg**
+
+
 
 **B. Probability that the discovered femor was from a male**
 
