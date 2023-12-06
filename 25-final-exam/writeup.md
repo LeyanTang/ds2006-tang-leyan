@@ -217,23 +217,40 @@ Plot:
 
 ## 6. Uncertainty about estimates
 **A. 1/20 support interval**
-
-
+Based on the image, the support interval ranges is where the "1/20" horizontal line converges with the standardized likelihood. So by eye, the interval is around `[2930, 3230]`.
 
 **B. Symmetric density credible interval**
+I used the following code to calculate the credibal interval:
+
+``````
+mean <- 3100
+sd <- sqrt(10)
+
+quantile_lower <- qnorm(0.025, mean = mean, sd = sd)
+quantile_upper <- qnorm(0.975, mean = mean, sd = sd)
+
+credible_interval <- c(quantile_lower, quantile_upper)
+credible_interval
+``````
+
+And the interval is `[3093.802, 3106.198]`.
+
 
 ## 7. Misc Definitions
 A. What is a confounding variable?
-- Answer: 
+- Answer: A confounding variable is an additional variable in a study that correlates with both the independent variable and the dependent variable. For instance, in a research project investigating the impact of a new teaching method on student performance, socioeconomic status could be a confounding variable if it influences both the teaching method used and the students' academic outcomes, making it challenging to attribute any observed changes solely to the new teaching approach.
 
 B. What is a CDF?
-- Answer:
+- Answer: The Cumulative Distribution Function (CDF) is a way of summing up probabilities to tell us the chance that a random variable is less than or equal to a certain value. It's non-decreasing meaning that it only stays the same or increase. It has a range of 0 to 1.
 
 C. What is a PDF? PMF?
 - Answer: 
+The Probability Density Function (PDF) is to express the probability per unit of the variable for a continuous random variable. Specifically, for a continuous variable X, the PDF f(x), provides the relative likelihood of X taking on a particular value or falling within a given range. 
+
+The Probability Mass Function (PMF) is a concept applied to discrete random variables, providing the absolute probability of the variable assuming a specific value. For a discrete variable X, the PMF P(X=x), directly gives the probability associated with each possible outcome. The sum of all PMF values across all possible outcomes is always 1, and the PMF gives absolute probabilities for each specific outcome of the discrete variable.
 
 D. What is Simpson’s Paradox?
-- Answer: 
+- Answer: Simpson's Paradox occurs when a trend or association observed in different groups of data disappears or reverses when the groups are combined. It emphasizes the importance of considering subgroup details rather than relying solely on overall summaries. The paradox can arise when confounding variables are not appropriately considered, leading to misleading or incorrect conclusions.
 
 E. What is independence?
-- Answer:
+- Answer: Independence means that the probability of one event does not affect the probability of the other. Two random variables are considered independent if the knowledge or information about the value of one variable provides no information about the value of the other variable.
