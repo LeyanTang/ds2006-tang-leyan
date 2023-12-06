@@ -106,11 +106,47 @@ Using `prob_180_or_more <- 1 - ppois(180 - 1, lambda = 5*30)`, I calculated that
 ## 4. Continuous Distributions
 **A. Probability of DBP lying between 90 and 110 mmHg**
 
-
+Using `prob <- pnorm(110, mean=80, sd=15) - pnorm(90, mean=80, sd=15)`, I calculated the probability in between is `0.2297424`.
 
 **B. Probability that the discovered femor was from a male**
 
+Given the Bayes' Rule, P(male|discovered) = P(discovered|male) * P(male) / P(discovered).
+
+Since we know P(male) is 0.5 so we only need to calculate the remaining two components, where P(discovered) = P(discovered|male)*P(male) + P(discovered|female)*P(female).
+
+Using this following code, I calculated that the probability that the discovered femor was from a male is  `0.6692436`:
+
+``````
+prob_male <- dnorm(40, mean = 40, sd = 3.4) * 0.5 /
+  (dnorm(40, mean = 40, sd = 3.4) * 0.5 +
+   dnorm(40, mean = 36, sd = 3.3) * 0.5)
+prob_male
+``````
+
 **C. Probability that 2 or more patients in a cohort of 10 experience an infection within 30 days**
+
+I used the follwing simulation code to calculate this probability:
+``````
+num_simulations <- 100000
+simulated_results <- numeric(num_simulations)
+
+for (i in 1:num_simulations) {
+  p_simu <- rbeta(1, 10, 100)
+  infections_simulation <- rbinom(1, size = 10, prob = p_simu)
+  simulated_results[i] <- infections_simulation >= 2
+}
+
+simulated_probability <- mean(simulated_results)
+simulated_probability
+``````
+- The probability is `0.23197`.
+- Explanation:
+
+I set the number of simulations to 100,000 initially because p is the random assignment. To keep track of the outcomes, I initialized a vector named `simulated_results`. Throughout the simulation process, I calculated whether in each iteration 2 or more patients in the cohort experienced an infection and recorded the result in the `simulated_results` vector.
+
+For each simulation, I generated a random value of \( p \) from a beta distribution with parameters \(\alpha = 10\) and \(\beta = 100\). I then used a negative binomial distribution to simulate the number of infections in a cohort of 10 patients, considering each patient's individual risk (\( p \)).
+
+After completing all simulations, I calculated the simulated probability by taking the mean of the `simulated_results` vector. This provided the proportion of simulations where 2 or more patients in the cohort experienced an infection within 30 days.
 
 ## 5. CDF and PDF
 **A. MLE Method**
