@@ -151,9 +151,59 @@ After completing all simulations, I calculated the simulated probability by taki
 ## 5. CDF and PDF
 **A. MLE Method**
 
+Code used:
+``````
+wt <- MASS::birthwt
+non_smoke <- subset(wt, smoke == 0)
+
+mean <- mean(non_smoke$bwt)
+sd <- sd(non_smoke$bwt)
+
+hist(non_smoke$bwt, freq = FALSE, main = 'Infant Birth Weight of Non-smoking Moms', ylim=c(0,0.0006), breaks=20)
+curve(dnorm(x, mean = mean, sd = sd), add = TRUE, col = 'red', lwd = 5)
+legend("topright", legend = c('Histogram', 'Normal Distribution'),
+       col = c('black', 'red'), lwd = 3, bty = 'n', cex = 0.7)
+``````
+Plot:
+
+![image](p3.png)
+
 **B. Gamma Distribution**
 
+Code used:
+``````
+wt <- MASS::birthwt
+non_smoke <- subset(wt, smoke == 0)
+bwt <- non_smoke$bwt
+
+xbar <- mean(bwt)
+s2 <- var(bwt)
+shape_hat <- xbar^2 / s2
+scale_hat <- s2 / xbar
+
+fwt <- function(x) {
+  dgamma(x, shape = shape_hat, scale = scale_hat)
+}
+
+
+hist(bwt, freq = FALSE, main = "Infant Birth Weight for Non-smoking Moms",
+     xlab = "Birth Weight", ylab = "Density", 
+     ylim = c(0, max(fwt(bwt))), breaks = 20)
+curve(fwt(x), add = TRUE, col = "blue", lwd = 3)
+``````
+Plot:
+
+![image](p4.png)
+
 **C. Gaussian kernel**
+
+Code used:
+``````
+
+``````
+Plot:
+
+![image](p2.png)
 
 ## 6. Uncertainty about estimates
 **A. 1/20 support interval**
