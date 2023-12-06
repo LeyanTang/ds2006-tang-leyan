@@ -199,14 +199,26 @@ Plot:
 
 Code used:
 ``````
+wt <- MASS::birthwt
+non_smoke <- subset(wt, smoke == 0)
+bwt <- non_smoke$bwt
+
+kde <- density(bwt, kernel = "gaussian")
+
+hist(bwt, freq = FALSE, main = "Histogram and KDE for Birth Weight (Non-smoking Moms)",
+     xlab = "Birth Weight", ylab = "Density", col = "lightgray",
+     breaks = 20)
+lines(kde, col = "green", lwd = 3)
 
 ``````
 Plot:
 
-![image](p2.png)
+![image](p5.png)
 
 ## 6. Uncertainty about estimates
 **A. 1/20 support interval**
+
+
 
 **B. Symmetric density credible interval**
 
