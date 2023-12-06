@@ -36,20 +36,22 @@ Based on the simulation, probability of winning the car with strategy 1 is 0.333
 
 **C. Communicating uncertainty**
 
-To further communicate the simulation error, based on Central Limit Theorem, using the mean and standard deviation from the sampling distributions for strategy 1 and strategy 2, and with a 95% confidence interval, I calculated the confidence intervals for the two strategies:
+The Central Limit Theorem states that, with a sufficiently large sample size, the distribution of sample means from any population approaches a normal distribution. In this case, I was assuming that with a sample number of 10000, the sample dsitrbution is close to normal distribution for calculating the intervals.
 
+Using the following CLT shortcut, I calculated the interval for both strategies:
 ``````
-conf_int_prob_staying <- qnorm(c(0.025, 0.975), mean_prob_staying, sd_prob_staying / sqrt(num_simulations))
-conf_int_prob_switching <- qnorm(c(0.025, 0.975), mean_prob_switching, sd_prob_switching / sqrt(num_simulations))
+d1 <- replicate(10000, game())
+mean <- rowMeans(d1 == "car")
+sum <- rowSums(d1 == "car")
+out1 <- prop.test(3297,10000, conf.level = 0.95)
+out1
+out2 <- prop.test(6703,10000, conf.level = 0.95)
+out2
 ``````
 
-The result table is shown below:
+![image](p0.png)
 
-![image](p1.png)
-
-There's the inherent variability in the simulations, reflected in the standard deviation of approximately 0.4729 for both staying and switching strategies. The standard deviation provides a measure of the dispersion in the simulated outcomes. 
-
-To further quantify the uncertainty, I computed 95% confidence intervals for both strategies. For the staying strategy, the interval [0.3284, 0.3470] indicates that we can be reasonably confident that the true probability of winning lies within this range. Similarly, for the switching strategy, the 95% confidence interval [0.6530, 0.6716] provides a plausible range for the true probability. This means that, within a 95% confidence level, we can reasonably expect the true probability of winning to be within the specified range for each strategy.
+Generating 10000 number of simulations, there's 3297 wins for strategy 1 and 6703 wins for strategy 2, calculated by rowMeans. Based on the intervals, we're 95% confident that the true probability of winning with Strategy 1 falls within 0.3205 and 0.3390, and 95% confident that the true probability of winning with Strategy 2 falls within 0.6610 and 0.6795.
 
 ## 2. Conditional Probability
 **A. Probability Table**
@@ -217,7 +219,7 @@ Plot:
 
 ## 6. Uncertainty about estimates
 **A. 1/20 support interval**
-Based on the image, the support interval ranges is where the "1/20" horizontal line converges with the standardized likelihood. So by eye, the interval is around `[2930, 3230]`.
+Based on the image, the support interval ranges is where the "1/20" horizontal line converges with the standardized likelihood. So by eye, the interval is around `[2930, 3230]`. 
 
 **B. Symmetric density credible interval**
 I used the following code to calculate the credibal interval:
