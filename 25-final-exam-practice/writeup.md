@@ -58,11 +58,11 @@ Generating 10000 number of simulations, there's 3297 wins for strategy 1 and 670
 |             | D+    | D- | Margin  |
 | ----------- | ----------- | ----------- | ----------- |
 | **T+** | 0.0008    | 0.0999    | 0.1007 |
-| &nbsp;&nbsp;&nbsp; Row |0.0079| 0.9921  | |
-| &nbsp;&nbsp;&nbsp; Col | 0.8 | 0.1  | |
+| Row |0.0079| 0.9921  | |
+| Col | 0.8 | 0.1  | |
 | **T-** | 0.0002  |0.8991   | 0.8993 |
-| &nbsp;&nbsp;&nbsp; Row | 0.0002  | 0.9998  | |
-| &nbsp;&nbsp;&nbsp; Col | 0.2 |0.9 | |
+| Row | 0.0002  | 0.9998  | |
+| Col | 0.2 |0.9 | |
 | Margin | 0.001  | 0.999   | 1 |
 
 **B. Positive predictive value of the test**
