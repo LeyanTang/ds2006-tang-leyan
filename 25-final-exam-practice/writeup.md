@@ -1,4 +1,4 @@
-# DS 2006 Final Exam
+# DS 2006 Final Practice Exam
 - **Name**: Leyan Tang
 - **ComputingID**: gnv2nh
 - **Date**: December 13th, 2023
