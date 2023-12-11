@@ -116,7 +116,54 @@ probability_less_than_third <- count_less_than_third / num_classes
 print(probability_less_than_third)
 ``````
 ## 4. Continuous Distributions
+### A. Probability of DBP exceeding 114 mmHg
+Using the following code:
+``````
+prob <- 1 - pnorm(104, mean = 80, sd = 15)
+prob
+``````
+So the probability of DBP exceeding 114 mmHg is `0.05479929`.
 
+### B. Probability that discovered femur was from a male
+
+Given the Bayes' Rule, P(male|discovered) = P(discovered|male) * P(male) / P(discovered).
+
+Since we know P(male) is 0.5 so we only need to calculate the remaining two components, where P(discovered) = P(discovered|male)*P(male) + P(discovered|female)*P(female).
+
+Using this following code, I calculated that the probability that the discovered femor was from a male is `0.407765`:
+``````
+prob_male <- dnorm(37, mean = 40, sd = 3.4) * 0.5 /
+  (dnorm(37, mean = 40, sd = 3.4) * 0.5 +
+   dnorm(37, mean = 36, sd = 3.3) * 0.5)
+prob_male
+``````
+### C. Value of x
+Following the logic in B, if the two probabilities are equal, then I used the following code to pinpoint the intersected x value while plotting out the two density function for female and male:
+``````
+x <- seq(25, 50, length.out = 10000)
+prob_male <- dnorm(x, mean = 40, sd = 3.4) * 0.5 /
+  (dnorm(x, mean = 40, sd = 3.4) * 0.5 +
+   dnorm(x, mean = 36, sd = 3.3) * 0.5)
+
+prob_female <- dnorm(x, mean = 36, sd = 3.3) * 0.5 /
+  (dnorm(x, mean = 40, sd = 3.4) * 0.5 +
+   dnorm(x, mean = 36, sd = 3.3) * 0.5)
+
+intersection_x <- x[which.min(abs(prob_male - prob_female))]
+intersection_y <- prob_male[which.min(abs(prob_male - prob_female))]
+
+plot(x, prob_male, type = "l", col = "blue", lwd = 2, ylim = c(0, 1), ylab = "Probability", xlab = "Value")
+lines(x, prob_female, col = "red", lwd = 2)
+legend("topright", legend = c("Male", "Female"), col = c("blue", "red"), lwd = 2)
+
+abline(v = intersection_x, col = "green", lty = 2)
+points(intersection_x, intersection_y, col = "green", pch = 19)
+cat("Intersection at x =", intersection_x, "\n")
+title("Probability Density Functions for Male and Female")
+``````
+The calculated intersection is when x is approximately `38.05`, P(femur from male | femur length = x) = P(femur from female | femur length = x).
+
+![image](q4.png)
 
 ## 5. Empirical CDF
 
