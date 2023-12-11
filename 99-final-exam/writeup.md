@@ -43,7 +43,45 @@ No, the data that match the depression rates could not illustrate the reasoning 
 Additionally, there might be other confounding with other factors that haven't be explored, so controlled experiments need to be run based on some fixed factors to draw a concrete conclusion, instead of relying merely on the observational data. For example, such factors may be relevant with the health conditions, age groups, regions of the mother that planned the delivery methods.
 
 ## 1. Simulation
+### A. Probability that both strategies simultaneously result in a goat
+``````
+num_simulations <- 2^16
+simulations <- replicate(num_simulations, game(4))
+both_goat_prob <- mean(simulations[1,] == "goat" & simulations[2,] == "goat")
 
+both_goat_prob
+``````
+
+The simulation result of the probability that both strategies simultaneously result in a goat is `0.3742065`.
+
+### B. Reporting precision
+Given that the number of simulations is 2^16 (65536), pinpointing this on the x-axis in the absolute/relative error plot which is 16 because it is on a log2 scale, we can identify the absolute/relative error of the simulation compared to the true value. Since the true probability of both resulting in goat is 3/8 when N is 4, the p is 0.375 in the analytic solution.
+
+- The absolute error is between 0.09 and 0.10 when N is 16 and p is between 0.25 and 0.50.
+![Image](q1.1.png)
+
+- The relative error is between 0.03 and 0.04 when N is 16 and p is between 0.25 and 0.5.
+![Image](q1.2.png)
+
+### C. Analytic solution: Contingency Table
+``````
+num_simulations <- 2^16
+simulations <- replicate(num_simulations, game(4))
+both_goat_prob <- mean(simulations[1,] == "goat" & simulations[2,] == "goat")
+both_car_prob <- mean(simulations[1,] == "car" & simulations[2,] == "car")
+car_1_goat_2 <- mean(simulations[1,] == "car" & simulations[2,] == "goat")
+car_2_goat_1 <- mean(simulations[1,] == "goat" & simulations[2,] == "car")
+
+both_goat_prob
+both_car_prob
+car_1_goat_2
+car_2_goat_1
+``````
+| | | Strategy 2 | |
+|:---|:---|:---:|:---:|
+| | | Car | Goat |
+| **Strategy 1** | Car | 0 (0) | 0.2507019 (0.25) |
+| | Goat| 0.3777313 (0.375) | 0.3715668 (0.375) |
 
 ## 2. Diagnostics
 ### A. Probability table
