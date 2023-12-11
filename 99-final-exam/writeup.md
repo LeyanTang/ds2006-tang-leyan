@@ -67,8 +67,54 @@ Based on the table, I calculated that P(D+|T+) is 0.85\*P(D+)/(0.05 + 0.8\*P(D+)
 ![image](q2.png)
 
 ## 3. Mixture Distributions
+### A. 90th percentile
+I used the following code to calculate the 90th percentile, since the simulation method is easier:
+``````
+rhc <- function(n){ rgamma(n,shape=2,scale=2)*rbinom(n,1,.4) }
+simulations <- rhc(1000)
+percentile_90_sim <- quantile(simulations, 0.9)
+print(percentile_90_sim)
+``````
+The computed result is `5.340455` based on 1000 simulations. 
 
+### B. Class average yearly hospital charge
+![image](q3.png)
 
+Here's the code that I used for this density plot:
+``````
+class_size <- 30
+num_classes <- 1000
+charges_per_student <- rhc(class_size * num_classes)
+
+class_average_charges <- tapply(charges_per_student, rep(1:num_classes, each = class_size), mean)
+class_average_charges <- class_average_charges * class_size
+
+density <- density(class_average_charges)
+plot(density, main = "Density Plot of Class Average Yearly Hospital Charge",
+     xlab = "Average Yearly Hospital Charge (in thousands of dollars)", col = "skyblue", lwd = 2)
+``````
+As I chose the total number of classes to be 1000, I first calculated the average charge per student for each class and then timed the class size of 30 for the class average number for all 1000 classes, and then generated the plot.
+
+### C. Probability of less than 10 students with zero charges
+
+Following the simulation method in B, I increased the class number to be 10000, and looping through each class to calculate the number of 0-charge students. Finally, out of the loop, I calculated the probability of less than 1/3 students having zero charges in a randomly selected class to be `0.001`.
+``````
+class_size <- 30
+num_classes <- 10000
+charges_per_student <- rhc(class_size * num_classes)
+charges_matrix <- matrix(charges_per_student, nrow = num_classes, byrow = TRUE)
+
+count_less_than_third <- 0
+for (i in 1:num_classes) {
+  count_zero_charges <- sum(charges_matrix[i, ] == 0)
+  if (count_zero_charges < class_size / 3) {
+    count_less_than_third <- count_less_than_third + 1
+  }
+}
+
+probability_less_than_third <- count_less_than_third / num_classes
+print(probability_less_than_third)
+``````
 ## 4. Continuous Distributions
 
 
