@@ -273,9 +273,26 @@ Even though in D, the posterior fits the prior the most, it is still not fit the
 Plot: ![image](q6.5.png)
 
 ## 7. Communicating uncertainty about parameter estimates
-### A.
+### A. Support Interval: Maximum Likelihood
+Based on the image, the support interval ranges is where the "1/20" horizontal line converges with the normalized maximum likelihood function. So by eye, the interval is around `[2930, 3230]`.
 
-### B.
+The interval [2930, 3230] is wider than the intervals corresponding to 1/10 and 1/5. As we move from 1/20 to 1/10 and 1/5, the likelihood of the true mean falling within a more confined range becomes higher. This is because a narrower interval suggests that the estimated mean is more precisely determined, reducing the range of potential values and, consequently, increasing our confidence in the accuracy of the estimate. The process reflects a refinement of our understanding of the average baby weight as we incorporate more information from the data.
+
+### B. Credibal Interval: Bayesian Updating
+I used the following code to calculate the credibal interval:
+
+``````
+mean <- 3100
+sd <- sqrt(10)
+
+quantile_lower <- qnorm(0.025, mean = mean, sd = sd)
+quantile_upper <- qnorm(0.975, mean = mean, sd = sd)
+
+credible_interval <- c(quantile_lower, quantile_upper)
+credible_interval
+``````
+
+A 95% symmetric density credible interval of `[3093.802, 3106.198]` for the mean birthweight suggests that, based on the given posterior distribution, there is a high probability (95%) that the true mean birthweight falls within this interval.
 
 ## 8. Extra Credit
 Because according to QQ-plot, we can see the relationship between the theoretical quantiles against sample quantiles generated from the model, if the model fits the data well then we expect the plot is close to a 45-degree line. Therefore, I added the 45-degree line to the two plots that found that in Plot B, the points closely align with the 45-degree reference line, indicating a higher degree of agreement between the data and the **gamma distribution**, compared to the normal distribution. 
