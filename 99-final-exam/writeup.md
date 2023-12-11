@@ -166,8 +166,51 @@ The calculated intersection is when x is approximately `38.05`, P(femur from mal
 ![image](q4.png)
 
 ## 5. Empirical CDF
+### A. CDF plot
+Using the simulation and eCDF method, I plotted the CDF for yearly charge per student:
+``````
+rhc <- function(n) {
+  rgamma(n, shape = 2, scale = 2) * rbinom(n, 1, 0.4)
+}
+
+sim_data <- rhc(100000)
+ecdf_values <- ecdf(sim_data)
+x_values <- seq(min(sim_data), max(sim_data), length.out = 1000)
+y_values <- ecdf_values(x_values)
+
+plot(x_values, y_values, type = "l", col = "blue", lwd = 2,
+     main = "Empirical Cumulative Distribution Function (eCDF)",
+     xlab = "Yearly Hospital Charges (in thousands of dollars)",
+     ylab = "Cumulative Probability")
+``````
+![image](q5.1.png)
+
+### B. Yearly charge CDF with a cap
+``````
+rhc_capped <- function(n) {
+  charges <- rgamma(n, shape = 2, scale = 2) * rbinom(n, 1, 0.4)
+  charges[charges > 1.5] <- 1.5
+  return(charges)
+}
 
 
+sim_data_capped <- rhc_capped(10000)
+ecdf_values_capped <- ecdf(sim_data_capped)
+x_values_capped <- seq(min(sim_data_capped), max(sim_data_capped), length.out = 10000)
+y_values_capped <- ecdf_values_capped(x_values_capped)
+
+plot(x_values_capped, y_values_capped, type = "l", col = "red", lwd = 2,
+     main = "Empirical Cumulative Distribution Function (eCDF) with Cap",
+     xlab = "Yearly Hospital Charges (in thousands of dollars)",
+     ylab = "Cumulative Probability")
+``````
+![image](q5.2.png)
+
+### C. Median yearly hospital charge
+
+Based on B, I calculated the median based on the simulated result on 10000 students: `summary(sim_data_capped)`, and the median of yearly hospital charge is **0**.
+
+![image](q5.3.png)
 
 ## 6. Estimation of CDF and PDF from data
 
