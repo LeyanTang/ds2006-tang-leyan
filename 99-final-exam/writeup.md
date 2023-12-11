@@ -213,10 +213,69 @@ Based on B, I calculated the median based on the simulated result on 10000 stude
 ![image](q5.3.png)
 
 ## 6. Estimation of CDF and PDF from data
+### A. MLE method
+``````
+df <- Hmisc::getHdata(nhgh)
+d1 <- nhgh[1:500,]
+adult_males <- d1[d1$age > 18 & d1$sex == "male", ]
+mean_value <- mean(adult_males$ht)
+sd_value <- sd(adult_males$ht)
 
+hist(adult_males$ht, freq = FALSE, main = 'Estimated Density Function of Standing Height for Adult Males', ylim = c(0, 0.06), breaks = 20)
+curve(dnorm(x, mean = mean_value, sd = sd_value), add = TRUE, col = 'red', lwd = 2)
+
+legend("topright", legend = c('Histogram', 'Normal Distribution'),
+       col = c('black', 'red'), lwd = 2, bty = 'n', cex = 0.7)
+``````
+Plot: ![image](q6.1.png)
+
+### B. Method of moment
+``````
+df <- Hmisc::getHdata(nhgh)
+d1 <- nhgh[1:500,]
+adult_females <- d1[d1$age > 18 & d1$sex == "female", ]
+bmi <- adult_females$bmi
+
+xbar <- mean(bmi)
+s2 <- var(bmi)
+shape_hat <- xbar^2 / s2
+scale_hat <- s2 / xbar
+
+fbmi <- function(x) {
+  dgamma(x, shape = shape_hat, scale = scale_hat)
+}
+
+hist(bmi, freq = FALSE, main = "Estimated Density Function of BMI for Adult Females",
+     xlab = "BMI", ylab = "Density", breaks = 20)
+curve(fbmi(x), add = TRUE, col = "blue", lwd = 3)
+``````
+Plot: ![image](q6.2.png)
+### C. Kernal density method
+``````
+adults <- d1[d1$age > 18, ]
+scr <- adults$SCr
+kde <- density(scr, kernel = "gaussian", na.rm = TRUE)
+
+plot(kde, main = "Kernel Density Estimate of SCr for Adults",
+     xlab = "Serum Creatinine (SCr)", ylab = "Density", col = "green", lwd = 3)
+legend("topright", legend = "Kernel Density Estimate",
+       col = "green", lwd = 3, bty = 'n', cex = 0.8)
+``````
+Plot: ![image](q6.3.png)
+### D. Bayesian updating
+From the data, I calculated that there're 421 zeroes and 79 ones. Therefore, I plugged in H to be 421 and T to be 79. When α is 290, β is 65, the posterior fits the prior the most.
+
+Plot: ![image](q6.4.png)
+
+### E. Informative prior
+Even though in D, the posterior fits the prior the most, it is still not fit the left side perfectly. So in order to create a more informative prior, I retrieved 1000 rows from the dataset and calculate the numbers again. Now H is 853 and T is 147.The expanded dataset and more precise parameters resulted in a more fit posterior curve, when α is 680, β is 84.
+
+Plot: ![image](q6.5.png)
 
 ## 7. Communicating uncertainty about parameter estimates
+### A.
 
+### B.
 
 ## 8. Extra Credit
 Because according to QQ-plot, we can see the relationship between the theoretical quantiles against sample quantiles generated from the model, if the model fits the data well then we expect the plot is close to a 45-degree line. Therefore, I added the 45-degree line to the two plots that found that in Plot B, the points closely align with the 45-degree reference line, indicating a higher degree of agreement between the data and the **gamma distribution**, compared to the normal distribution. 
