@@ -157,10 +157,10 @@ print(probability_less_than_third)
 ### A. Probability of DBP exceeding 114 mmHg
 Using the following code:
 ``````
-prob <- 1 - pnorm(104, mean = 80, sd = 15)
+prob <- 1 - pnorm(114, mean = 80, sd = 15)
 prob
 ``````
-So the probability of DBP exceeding 114 mmHg is `0.05479929`.
+So the probability of DBP exceeding 114 mmHg is `0.0117053`.
 
 ### B. Probability that discovered femur was from a male
 
