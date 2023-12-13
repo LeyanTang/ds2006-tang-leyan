@@ -134,24 +134,19 @@ plot(density, main = "Density Plot of Class Average Yearly Hospital Charge",
 As I chose the total number of classes to be 1000, I first calculated the average charge per student for each class and then timed the class size of 30 for the class average number for all 1000 classes, and then generated the plot.
 
 ### C. Probability of less than 10 students with zero charges
+Following the simulation method in B, I increased the class number to be 10000, and looping through each class to calculate the number of 0-charge students. I used rowSums(charges_matrix == 0) to calculate the count of students with zero charges for each class, and used < 10 to check if this count is less than 10.
 
-Following the simulation method in B, I increased the class number to be 10000, and looping through each class to calculate the number of 0-charge students. Finally, out of the loop, I calculated the probability of less than 1/3 students having zero charges in a randomly selected class to be `0.001`.
+Finally, I calculated the probability of less than 10 students having zero charges in a randomly selected class to be `0.001`.
 ``````
 class_size <- 30
 num_classes <- 10000
 charges_per_student <- rhc(class_size * num_classes)
 charges_matrix <- matrix(charges_per_student, nrow = num_classes, byrow = TRUE)
 
-count_less_than_third <- 0
-for (i in 1:num_classes) {
-  count_zero_charges <- sum(charges_matrix[i, ] == 0)
-  if (count_zero_charges < class_size / 3) {
-    count_less_than_third <- count_less_than_third + 1
-  }
-}
+count_less_than_third <- sum(rowSums(charges_matrix == 0) < 10)
+prob_less_10 <- count_less_than_third / num_classes
 
-probability_less_than_third <- count_less_than_third / num_classes
-print(probability_less_than_third)
+print(prob_less_than_10)
 ``````
 ## 4. Continuous Distributions
 ### A. Probability of DBP exceeding 114 mmHg
