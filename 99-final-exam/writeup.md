@@ -143,8 +143,8 @@ num_classes <- 10000
 charges_per_student <- rhc(class_size * num_classes)
 charges_matrix <- matrix(charges_per_student, nrow = num_classes, byrow = TRUE)
 
-count_less_than_third <- sum(rowSums(charges_matrix == 0) < 10)
-prob_less_10 <- count_less_than_third / num_classes
+count_less_than_10 <- sum(rowSums(charges_matrix == 0) < 10)
+prob_less_10 <- count_less_than_10 / num_classes
 
 print(prob_less_than_10)
 ``````
